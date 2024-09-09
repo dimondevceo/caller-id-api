@@ -10,7 +10,7 @@ Enhance your software with real-time caller identification, fraud prevention, an
 
 ## Authentication
 
-To use the CallerAPI, include your API key in the header of each request:
+To use the CallerAPI, include your API key (get it in the [Dashboard](https://callerapi.com/dashboard)) in the header of each request:
 
 ```
 X-Auth: YOUR_API_KEY
