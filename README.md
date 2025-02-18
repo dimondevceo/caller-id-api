@@ -115,6 +115,7 @@ The response is a JSON object containing information from various sources. Here'
 - `callapp`: Information from CallApp API
 - `viewcaller`: Information from ViewCaller API
 - `eyecon`: Information from EyeCon API
+- `hiya`: Information from Hiya API
 
 ```json
 {
@@ -181,6 +182,29 @@ The response is a JSON object containing information from various sources. Here'
       "America/Anchorage",
       "America/Chicago"
     ]
+  },
+  "hiya": {
+    "name": "Apple Inc.",
+    "type": "Business",
+    "is_spam": false,
+    "reputation": "UNCERTAIN",
+    "spam_score": 0,
+    "reputation_score": 100,
+    "category": "Technology",
+    "comments": {
+      "reports": [
+        {
+          "id": "unique-id",
+          "phone": "1/8006927753",
+          "timestamp": "2024-02-14T12:53:21.190Z",
+          "comment": {
+            "languageTag": "en-US",
+            "str": "Apple Support"
+          },
+          "category": 1
+        }
+      ]
+    }
   }
 }
 ```
@@ -242,6 +266,38 @@ $data = json_decode($response, true);
 print_r($data);
 ```
 </details>
+
+### Field Descriptions
+
+The response includes various fields from different providers. Here's a detailed breakdown:
+
+#### Hiya Fields
+- `name`: The identified name of the caller
+- `type`: Type of the caller (e.g., "Business", "Personal")
+- `is_spam`: Boolean indicating if the number is marked as spam
+- `reputation`: Overall reputation rating ("GOOD", "SPAM", "UNCERTAIN")
+- `spam_score`: Numerical score indicating spam likelihood (0-100)
+- `reputation_score`: Numerical score for overall reputation (0-100)
+- `category`: Business or caller category
+- `comments`: User-submitted reports and feedback
+
+##### Comment Categories
+The `category` field in comment reports indicates the type of call:
+
+**Not Spam Type**
+- `1`: Not Spam - Legitimate calls
+
+**Nuisance Type**
+- `2`: General Spam - Non-specific spam calls
+- `3`: Debt Collector - Collection agency calls
+- `4`: Political - Campaign or political calls
+- `5`: Nonprofit - Charity or nonprofit organization calls
+- `6`: Telemarketer - Sales and marketing calls
+- `7`: Survey - Market research or survey calls
+
+**Risk Type**
+- `8`: Fraud - Scam or fraudulent calls
+- `10`: Robocaller - Automated calling systems
 
 ## Get Phone Number Picture
 
